@@ -7,7 +7,16 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="cabecalho">
-		<a class="navbar-brand" href="#">Gerenciador de tarefas</a>
+		<a class="navbar-brand" href="/">Gerenciador de tarefas</a>
+		<button class="navbar-toggler" type="button" data-toglle="collapse"
+			data-target="#navbar-app">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar-app">
+			<div class="navbar-nav">
+				<a class="nav-item nav-link" href="/">Home</a>
+			</div>
+		</div>
 	</nav>
 	<div class="container">
 		<h3 style="margin-top: 20px;">Inserir usuário</h3>
@@ -17,6 +26,11 @@
 				<label th:errors="*{email}" class="validation-message"></label>
 			</div>
 			<div class="row">
+				<div class="form-group col-md-6">
+					<label>Nome</label> 
+					<input type="text" class="form-control" th:field="*{nome}">
+				</div>
+
 				<div class="form-group col-md-6">
 					<label>E-mail:</label> 
 					<input type="text" class="form-control" th:field="*{email}">

@@ -6,12 +6,33 @@
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
-	<!-- incluir pasta fragmentos/arquivo fragmentos :: div cabecalho -->
 	<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
 	<div class="container">
 		<h1>Gerenciador de tarefas</h1>
-		<p>Sistema desenvolvido no workshop da TreinaWeb</p>
-		<p th:text="${mensagem}"></p>
+		<p>Sistema desenvolvido no workshop da TreinaWeb - julho/2019</p>
+		<p sec:authorize="isAuthenticated()">Usuário: <span sec:authentication="name"></span></p>
+		<hr/>
+		<div>
+			<p><h3>Tarefas em andamento</h3></p>
+			<table class="table table-striped table-hover table-sm" style="border-bottom:1px solid #ccc">
+				<thead>
+					<th>#</th>
+					<th>Título</th>
+					<th>Descrição</th>
+					<th>Usuário</th>
+					<th>Data Conclusão</th>
+				</thead>
+				<tbody>
+					<tr th:each="tarefa : ${tarefas}">
+						<td th:text="${tarefa.id}"></td>
+						<td th:text="${tarefa.titulo}"></td>
+						<td th:text="${tarefa.descricao}"></td>
+						<td th:text="${tarefa.usuario.nome}"></td>
+						<td th:text="${#dates.format(tarefa.dataExpiracao, 'dd/MM/yyyy')}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

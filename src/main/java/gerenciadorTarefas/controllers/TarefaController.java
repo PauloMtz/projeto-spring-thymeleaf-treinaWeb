@@ -74,8 +74,9 @@ public class TarefaController {
 	// direciona para a página de alteração
 	@GetMapping("/alterar/{id}")
 	public ModelAndView alterar(@PathVariable("id") Long id) {
+		Tarefa tarefa = repositorioTarefa.findById(id).orElse(null);
 		ModelAndView mv = new ModelAndView();
-		Tarefa tarefa = repositorioTarefa.getOne(id);
+		mv.setViewName("tarefas/alterar");
 		mv.addObject("tarefa", tarefa);
 		return mv;
 	}

@@ -12,4 +12,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
 	@Query("SELECT t FROM Tarefa t WHERE t.usuario.email = :emailUsuario")
 	List<Tarefa> carregarTarefasPorUsuario(@Param("emailUsuario") String email);
+
+	@Query("SELECT t FROM Tarefa t WHERE t.concluida = false")
+	List<Tarefa> carregarTodasNaoConcluidas();
 }
